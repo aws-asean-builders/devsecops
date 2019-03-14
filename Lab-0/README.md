@@ -120,7 +120,7 @@ $ git config --global credential.UseHttpPath true
 There are a number of files and startup scripts we have pre-created for you. They're all in the main repo that you're using, so we'll clone that locally. Run this:
 
 <pre>
-$ git clone https://github.com/aws-samples/amazon-ecs-mythicalmysfits-workshop.git
+$ git clone https://github.com/aws-asean-builders/devsecops.git
 </pre>
 
 3\. Bootstrap
@@ -128,7 +128,7 @@ $ git clone https://github.com/aws-samples/amazon-ecs-mythicalmysfits-workshop.g
 There are a number of files that need to be created in order for your services to run later, so let's create them now.
 
 <pre>
-$ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/
+$ cd ~/environment/devsecops/
 $ script/setup
 </pre>
 

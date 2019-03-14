@@ -42,12 +42,14 @@ On the **Create build project** page, enter in the following details:
 - Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously*
 - Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
 
-![CodeBuild Create Project Part 1](images/cb-create-project-1.png)
+<!-- ![CodeBuild Create Project Part 1](images/cb-create-project-1.png) -->
 
 Expand the **Additional Information** and enter the following in Environment Variables:
 
 - Name: `AWS_ACCOUNT_ID` - *Enter this string*
 - Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID*
+
+You can ger your AWS Account ID using the command `aws sts get-caller-identity`.
 
 **Buildspec:**
 
@@ -89,7 +91,7 @@ Another developer from the Mythical Mysfits team has started a buildspec_dev fil
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
 $ git checkout -b dev
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
+$ cp ~/environment/devsecops/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
 </pre>
 
 Now that you have a copy of the draft as your buildspec, you can start editing it. The previous developer left comments indicating what commands you need to add (<b>These comments look like - #[TODO]:</b>). Add the remaining instructions to your buildspec_dev.yml.  
@@ -145,7 +147,7 @@ phases:
 
 You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
 <pre>
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hintspec_dev.yml buildspec_dev.yml
+$ cp ~/environment/devsecops/Lab-2/hints/hintspec_dev.yml buildspec_dev.yml
 </pre>
 
 </details>
@@ -170,6 +172,10 @@ Make sure the name of the file is buildspec_dev.yml and then run these commands:
 $ git add buildspec_dev.yml
 $ git commit -m "Adding in support for AWS CodeBuild"
 [dev 6755244] Adding in support for AWS CodeBuild
+</pre>
+
+Push your changes to AWS CodeCommit
+<pre>
 $ git push origin dev
 Counting objects: 8, done.
 Compressing objects: 100% (7/7), done.
