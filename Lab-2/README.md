@@ -117,7 +117,7 @@ Here are links to documentation and hints to help along the way. If you get stuc
 - https://docs.docker.com/engine/reference/builder/#entrypoint
 </pre>
 
-<details>
+<!-- <details>
   <summary>
     HINT: Click here for the completed buildspec.yml file.
   </summary>
@@ -143,7 +143,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION # <b><i>This is the push command from earlier</i></b>
 </pre>
-<br/>
+<br/> -->
 
 You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
 <pre>
