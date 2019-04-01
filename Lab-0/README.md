@@ -12,7 +12,7 @@ Here's what you'll be doing:
 * [Familiarize Yourself with the Mythical Workshop Environment](#familiarize-yourself-with-the-workshop-environment)
 * [Configure Cloud 9 Mythical Working Environment](#configure-cloud9-working-environment)
 * [Choose Your Mythical Path](#stop-pay-attention-here-because-it-matters)
-<!-- * [Crash Course/Refresher of CON214](#crash-courserefresher-on-workshop-1-con214-monolith-to-microservice-with-docker-and-aws-fargate) -->
+* [Crash Course/Refresher of CON214](#crash-courserefresher-on-workshop-1-con214-monolith-to-microservice-with-docker-and-aws-fargate)
 
 ### Deploy Mythical CloudFormation Stack
 
@@ -20,7 +20,7 @@ Here's what you'll be doing:
 
 Log into the AWS Management Console and select an [AWS region](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html).  
 
-The region dropdown is in the upper right hand corner of the console to the left of the Support dropdown menu.  For this workshop, choose either **EU (Ireland)** or **Asia Pacific (Singapore)**.  Workshop administrators will typically indicate which region you should use.
+The region dropdown is in the upper right hand corner of the console to the left of the Support dropdown menu.  For this workshop, choose either **US West (Oregon)**, **US East (Ohio)**, **EU (Ireland)** or **Asia Pacific (Singapore)**.  Workshop administrators will typically indicate which region you should use.
 
 2\. Launch CloudFormation Stack to create core workshop infrastructure
 
@@ -28,8 +28,10 @@ Click on one of the **Deploy to AWS** icons below to region to stand up the core
 
 Region | Launch Template
 ------------ | -------------  
-**Ireland** (eu-west-1) | [![Launch Mythical Mysfits Stack into Ireland with CloudFormation](images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=mythical-mysfits-devsecops&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate-devsecops/core.yml)  
-**Singapore** (ap-southeast-1) | [![Launch Mythical Mysfits Stack into Singapore with CloudFormation](images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=mythical-mysfits-devsecops&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate-devsecops/core.yml) 
+**Oregon** (us-west-2) | [![Launch Mythical Mysfits Stack into Oregon with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=mythical-mysfits-devsecops&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate-devsecops/core.yml)  
+**Ohio** (us-east-2) | [![Launch Mythical Mysfits Stack into Ohio with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=mythical-mysfits-devsecops&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate-devsecops/core.yml)  
+**Ireland** (eu-west-1) | [![Launch Mythical Mysfits Stack into Ireland with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=mythical-mysfits-devsecops&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate-devsecops/core.yml)  
+**Singapore** (ap-southeast-1) | [![Launch Mythical Mysfits Stack into Singapore with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=mythical-mysfits-devsecops&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate-devsecops/core.yml) 
 
 The links above will bring you to the AWS CloudFormation console with the **Specify an Amazon S3 template URL** field populated and radio button selected. Just click **Next**. If you do not have this populated, please click the link above.
 
@@ -120,7 +122,7 @@ $ git config --global credential.UseHttpPath true
 There are a number of files and startup scripts we have pre-created for you. They're all in the main repo that you're using, so we'll clone that locally. Run this:
 
 <pre>
-$ git clone https://github.com/aws-asean-builders/devsecops.git
+$ git clone https://github.com/aws-samples/amazon-ecs-mythicalmysfits-workshop.git
 </pre>
 
 3\. Bootstrap
@@ -128,7 +130,7 @@ $ git clone https://github.com/aws-asean-builders/devsecops.git
 There are a number of files that need to be created in order for your services to run later, so let's create them now.
 
 <pre>
-$ cd ~/environment/devsecops/
+$ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/
 $ script/setup
 </pre>
 
@@ -136,10 +138,10 @@ $ script/setup
 
 <details>
 <summary>
-<b>Click here</b> if you are already familiar with Docker, Fargate, and AWS in general, we'll give you instructions on how to run the bootstrap script that will get you to the start of Lab 1.
+<b>Click here</b> if you are already attended CON214 or are familiar with Docker, Fargate, and AWS in general, we'll give you instructions on how to run the bootstrap script that will get you to the start of Lab 1.
 </summary>
 <pre>
-$ cd ~/environment/devsecops/
+$ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/
 $ script/setup_ws1_end
 </pre>
 
@@ -157,17 +159,17 @@ You made it to the end of Lab 0. You should now have two running services hooked
 
 <details>
 <summary>
-<b>Click here</b> if you want a <b>refresher</b> or a quick crash course on Docker, Fargate, and AWS in general. You'll do a few of the steps manually to get you to the start of Lab 1.
+<b>Click here</b> if you want a <b>refresher</b> or a quick crash course on Docker, Fargate, and AWS in general. You'll do a few of the steps from CON214 to get you to the start of Lab 1.
 </summary>
 
-<!-- ### Crash Course/Refresher on Workshop 1 (CON214: Monolith to Microservice with Docker and AWS Fargate) -->
+### Crash Course/Refresher on Workshop 1 (CON214: Monolith to Microservice with Docker and AWS Fargate)
 
 1\. Build the monolith docker image and test it
 
 In order for us to use a Docker image, we have to create it first. We'll do it manually here but don't worry, the whole point is to automate all this away. 
 
 <pre>
-$ cd ~/environment/devsecops/app/monolith-service
+$ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolith-service
 $ docker build -t monolith-service .
 </pre>
 
@@ -240,7 +242,7 @@ When you issue the push command, Docker pushes the layers up to ECR, and if you 
 We already have the repository URIs so let's build the like-service:
 
 <pre>
-$ cd ~/environment/devsecops/app/like-service
+$ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/like-service
 $ docker build -t like-service .
 </pre>
 
@@ -282,7 +284,7 @@ $ aws ecs list-task-definitions
 Next up we need to create the Fargate services for the monolith service and the like service. We're using AWS CLI skeletons that we've updated to include the output values from the CloudFormation stack. The only thing you have to do is pass in the task definitions you noted down earlier. Run the following commands from your Cloud9 IDE, substituting in the task definitions for the ones you just listed. Make sure to include the number at the very end.
 
 <pre>
-$ cd ~/environment/devsecops/Lab-0
+$ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-0
 $ aws ecs create-service --cli-input-json file://monolith-service.json --task-definition REPLACE_ME_MONOLITH_TASK_DEFINITION
 $ aws ecs create-service --cli-input-json file://like-service.json --task-definition REPLACE_ME_LIKE_TASK_DEFINITION
 </pre>

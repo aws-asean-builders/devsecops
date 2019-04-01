@@ -45,7 +45,7 @@ Replace the container name with the name of your service, which should be `like-
 <summary> HINT: There's also completed file in hints/hintspec_prod.yml. Click here to see how to copy it in.</summary>
   Make sure you change REPLACEME_REPO_URI to your ECR repository URI!
   <pre>
-  $ cp ~/environment/devsecops/Lab-3/hints/buildspec_prod.yml ~/environment/REPLACE_ME_LIKE_REPOSITORY_NAME/buildspec_prod.yml
+  $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-3/hints/buildspec_prod.yml ~/environment/REPLACEME_REPO_NAME/buildspec_prod.yml
   </pre>
 </details>
 
@@ -169,8 +169,8 @@ By default, when you create your pipeline, CodePipeline will automatically run t
 Now that you have your application deploying automatically, let's deploy a new version! We've upgraded the health check for our like service to make sure it can connect to the monolith service for the fulfillment method.
 
 <pre>
-$ cd ~/environment/REPLACE_ME_LIKE_REPOSITORY_NAME
-$ cp ~/environment/devsecops/Lab-3/mysfits_like_v2.py service/mysfits_like.py
+$ cd ~/environment/REPLACEME_LIKE_REPO
+$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-3/mysfits_like_v2.py service/mysfits_like.py
 $ git add service/mysfits_like.py
 $ git commit -m "Cuddles v2"
 $ git push origin master
