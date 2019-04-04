@@ -118,10 +118,10 @@ A new window should appear. The values here are almost identical to that of Lab-
 - Project name: `prod-like-service-build` 
 - Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
 - Operating System: Select **Ubuntu** - *This is the OS that will run your build*
-- Runtime: Select **Docker** - *Each image has specific versions of software installed. See [Docker Images Provided by AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)*
-- Runtime version: Select **aws/codebuild/docker:17.09.0** - *This will default to the latest*
-- Image version: **Leave as is**
-- Privileged: **Leave as is** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
+- Runtime: Select **Standard** 
+- Runtime version: Select **aws/codebuild/standard:1.0** - *This will default to the latest*
+- Image version: **aws/codebuild/standard:1.0-1.8.0**
+- Privileged: **Checked** 
 - Service role: **Existing service role** - *A service role was automatically created for you via CFN*
 - Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously. It will be in the form of **CFNStackName**-CodeBuildServiceRole*
 
@@ -130,7 +130,7 @@ A new window should appear. The values here are almost identical to that of Lab-
 Expand the **Additional Information** and enter the following in Environment Variables:
 
 - Name: `AWS_ACCOUNT_ID` - *Enter this string*
-- Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID*
+- Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID* Run this command to get your 12-digit Account ID ``aws sts get-caller-identity``
 
 **Buildspec:**
 
