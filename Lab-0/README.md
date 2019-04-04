@@ -183,7 +183,7 @@ $ docker run -p 8000:80 -e AWS_DEFAULT_REGION=<b><i>REPLACEME_REGION</i></b> -e 
 
 Following our naming conventions, my command would be:
 <pre>
-$ docker run -p 8000:80 -e AWS_DEFAULT_REGION=eu-west-1 -e DDB_TABLE_NAME=Table-mythical-mysfits-devsecops monolith-service
+$ docker run -p 8080:80 -e AWS_DEFAULT_REGION=ap-southeast-1 -e DDB_TABLE_NAME=Table-mythical-mysfits-devsecops monolith-service
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
 </pre>
 
@@ -218,11 +218,11 @@ $ aws ecr describe-repositories
 Now that we have the repository URIs, we can tag and push the images up to ECR for later use. Here we are pushing the monolith-service to the repository with the word `mono` in it we got from above. 
 
 <pre>
-$ $(aws ecr get-login --no-include-email --region <b><i>REPLACEME_REGION</b></i>)
-$ docker tag monolith-service:latest <b><i>REPLACEME_ECR_REPOSITORY_URI</b></i>:latest
-$ docker push <b><i>REPLACEME_ECR_REPOSITORY_URI</b></i>:latest
+$ $(aws ecr get-login --no-include-email --region ap-southeast-1)
+$ docker tag monolith-service:latest <b><i>REPLACEME_ECR_REPOSITORY_URI_FOR_mythic-mono</b></i>:latest
+$ docker push <b><i>REPLACEME_ECR_REPOSITORY_URI_FOR_mythic-mono</b></i>:latest
 
-The push refers to repository [123456789012.dkr.ecr.eu-west-1.amazonaws.com/mythical-mysfits-devsecops/monolith-service]
+The push refers to repository [123456789012.dkr.ecr.ap-southeast-1.amazonaws.com/mythic-mono-uji1fb14urlq]
 a09105a1d2ce: Pushed 
 b0be10c9aaa2: Pushed 
 5a458948ccaa: Pushed 
@@ -249,8 +249,8 @@ $ docker build -t like-service .
 *Note: Did you notice that the build time was significantly shorter when building the like-service? That's because most of the layers were already cached*
 
 <pre>
-$ docker tag like-service:latest <b><i>REPLACEME_ECR_REPOSITORY_URI</b></i>:latest
-$ docker push <b><i>REPLACEME_ECR_REPOSITORY_URI</b></i>:latest
+$ docker tag like-service:latest <b><i>REPLACEME_ECR_REPOSITORY_URI_FOR_mythic-like</b></i>:latest
+$ docker push <b><i>REPLACEME_ECR_REPOSITORY_URI_FOR_mythic-like</b></i>:latest
 </pre>
 
 3\. Look at the task definition for the monolith-service
