@@ -28,16 +28,16 @@ We're going to add a new stage, "Test", between the "Build" and "Deploy" stages.
 
 - Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
 - Operating System: Select **Ubuntu** - *This is the OS that will run your build*
-- Runtime: Select **Docker** - *Each image has specific versions of software installed. See [Docker Images Provided by AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)*
-- Runtime version: Select **aws/codebuild/docker:17.09.0** - *This will default to the latest*
-- Image version: **Leave as is**
-- Privileged: **Leave as is** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
+- Runtime: Select **Standard** -  
+- Runtime version: Select **aws/codebuild/standard:1.0** - *This will default to the latest*
+- Image version: **aws/codebuild/standard:1.0-1.8.0**
+- Privileged: **Checked** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
 - Service role: **Existing service role** - *A service role was automatically created for you via CFN*
 - Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously*
 
 - Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
 
-![CodeBuild Create Project Part 1](images/cb-create-test-project-1.png)
+<!-- ![CodeBuild Create Project Part 1](images/cb-create-test-project-1.png) -->
 
 Expand the **Additional Information** and enter the following in Environment Variables:
 
@@ -55,7 +55,7 @@ Choose **Continue to CodePipeline**.
 
 ![CodeBuild Create Project Part 1](images/cb-create-test-project-2.png)
 
-You will now be back at the CodePipeline console. In the Input Artifacts section we're going to do something different than before - we're going to use multiple artifacts. Select SourceArtifact from the dropdown, then choose add, then choose BuildArtifact. Another dropdown will appear above, Primary Artifact. Select SourceArtifact here. Finally leave your output artifacts empty. What we've done here is inject the source artifact from CodeCommit as well as the build artifact (imagedefinitions.json) from the build phase. The source artifact is our primary input artifact because it's where our buildspec is.
+You will now be back at the CodePipeline console. In the Input Artifacts section we're going to do something different than before - we're going to use **multiple artifacts**. Select SourceArtifact from the dropdown, then choose add, then choose *BuildArtifact*. Another dropdown will appear above, Primary Artifact. Select *SourceArtifact* here. Finally leave your **output artifacts empty**. What we've done here is inject the source artifact from CodeCommit as well as the build artifact (imagedefinitions.json) from the build phase. The source artifact is our primary input artifact because it's where our buildspec is.
 
 ![CodePipeline Create Action](images/cp-create-action.png)
 
