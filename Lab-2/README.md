@@ -162,13 +162,16 @@ When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
 
 1\. Check in your new file into the AWS CodeCommit repository.
 
-Make sure the name of the file is buildspec_dev.yml and then run these commands:
+Make sure the name of the file is buildspec_dev.yml and then run these commands (don't forget to git push!):
 
 <pre>
 $ git add buildspec_dev.yml
 $ git commit -m "Adding in support for AWS CodeBuild"
 [dev 6755244] Adding in support for AWS CodeBuild
+
+
 $ git push origin dev
+
 Counting objects: 8, done.
 Compressing objects: 100% (7/7), done.
 Writing objects: 100% (8/8), 1.07 KiB | 546.00 KiB/s, done.
