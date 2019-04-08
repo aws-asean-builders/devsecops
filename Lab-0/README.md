@@ -140,10 +140,10 @@ If there was an [error](http://docs.aws.amazon.com/AWSCloudFormation/latest/User
 <summary>
 <b>Click here</b> if you are already attended CON214 or are familiar with Docker, Fargate, and AWS in general, we'll give you instructions on how to run the bootstrap script that will get you to the start of Lab 1.
 </summary>
-```
+<pre>
 $ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/
 $ script/setup_ws1_end
-```
+</pre>
 
   You should now have 2 Fargate services running in ECS - one for the Monolith service and one for the Like service. These are both sitting behind an ALB.
 
