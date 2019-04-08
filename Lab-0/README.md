@@ -168,10 +168,10 @@ $ script/setup_ws1_end
 
   In order for us to use a Docker image, we have to create it first. We'll do it manually here but don't worry, the whole point is to automate all this away.
 
-```
+<pre>
 $ cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolith-service
 $ docker build -t monolith-service .
-```
+</pre>
 
   Run the docker container and test the adoption agency platform running as a container to make sure it responds
 
