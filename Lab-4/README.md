@@ -57,7 +57,8 @@ Choose **Continue to CodePipeline**.
 
 You will now be back at the CodePipeline console. In the Input Artifacts section we're going to do something different than before - we're going to use **multiple artifacts**. Select *SourceArtifact* from the dropdown, then choose add, then choose *BuildArtifact*. Another dropdown will appear above, *Primary Artifact*. Select *SourceArtifact* here. Finally leave your **output artifacts empty**. What we've done here is inject the source artifact from CodeCommit as well as the build artifact (imagedefinitions.json) from the build phase. The source artifact is our primary input artifact because it's where our buildspec is.
 
-![CodePipeline Create Action](images/cp-create-action.png)
+![CodePipeline Create Action](images/cp-create-action2.jpeg) <!--(images/cp-create-action.png) -->
+
 
 Save the action, choose "Done" to finish editing the stage, then choose "Save" to save the entire pipeline.
 
