@@ -12,6 +12,7 @@ Here's what you'll be doing:
 
 ### Set up repos
 
+
 1. Clone all repos
 
     Up until now, Mythical Mysfits hasn't really been doing anything with source repos, so let's start checking things into repos like we're supposed to. First, you'll have to clone the pre-created repositories. You can get the git clone URLs from either the console or CLI. We'll do it from the CLI today.
@@ -83,7 +84,7 @@ Here's what you'll be doing:
 
 Now that we have our repos cloned and are ready to start checking in, let's stop to think about security. Exposed access and secret keys are often very costly for companies and that's what we're going to try and avoid. To achieve this, we're going to use a project called [git-secrets](https://github.com/awslabs/git-secrets).
 
-Git-Secrets scans commits, commit messages, and --no-ff merges to prevent adding secrets into your git repositories. If a commit, commit message, or any commit in a --no-ff merge history matches one of your configured prohibited regular expression patterns, then the commit is rejected.
+Git-Secrets scans commits, commit messages, and "--no-ff merges" to prevent adding secrets into your git repositories. If a commit, commit message, or any commit in a "--no-ff merge" history matches one of your configured prohibited regular expression patterns, then the commit is rejected.
 
 1. Install git-secrets
 
@@ -117,6 +118,7 @@ Git-Secrets scans commits, commit messages, and --no-ff merges to prevent adding
     $ cd ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git secrets --install
     ```
+
 
 3. Check in code
     ```
@@ -152,6 +154,7 @@ Basically, `git-secrets` scans commits, commit messages, and `--no-ff` merges to
     If you see the above output, git-secrets is working. If not, go back to the [Build security right into git commits](#build-security-right-into-git-commits) section.
 
     In your Cloud9 console, open up the directory `~/environment/mythical-mysfits-devsecops-like-service/service`. You should find the file `mysfits_like.py`. Double-click, open up the file and remove the line. This time, someone just left a commented access key in there so it's not being used, but it could have been bad.
+
 
 2. Check in the code again
 

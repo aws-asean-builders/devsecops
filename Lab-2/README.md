@@ -28,6 +28,7 @@ Here's what you'll be doing:
     - Source Provider: Select **AWS CodeCommit**
     - Repository: Choose the repo from the CloudFormation stack that looks like StackName-**like-service**
 
+
     **Environment:**
 
     - Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
@@ -47,10 +48,12 @@ Here's what you'll be doing:
     - Name: `AWS_ACCOUNT_ID` - *Enter this string*
     - Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID* Run this command to get your 12-digit Account ID ``aws sts get-caller-identity``
 
+
     **Buildspec:**
 
     - Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
     - Buildspec name: Enter `buildspec_dev.yml` - *we'll be using the same repo, but different buildspecs*
+
 
     **Artifacts:**
 
@@ -58,9 +61,11 @@ Here's what you'll be doing:
 
     Click **Create build project**.
 
+
     ![CodeBuild Create Project Part 2](images/cb-create-project-2.png)
 
 2. Get login, tag, and push commands for ECR
+
 
     We now have the building blocks in place to start automating the builds of our Docker images. You should have previously found all the commands to push/pull from ECR, but if not, follow this. Otherwise, skip to Step 5 and create your Buildspec now.
 
@@ -83,6 +88,7 @@ Here's what you'll be doing:
   2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
 
   Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
+
 
   <pre>
   $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
@@ -115,7 +121,7 @@ Here are links to documentation and hints to help along the way. If you get stuc
 
 <details>
   <summary>
-    HINT: Click here for the completed buildspec.yml file.
+    HINT: Click here for the completed `buildspec.yml` file.
   </summary>
   There are many ways to achieve what we're looking for. In this case, the buildspec looks like this:
 <pre>
@@ -139,9 +145,8 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION # <b><i>This is the push command from earlier</i></b>
 </pre>
-<br/>
 
-You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
+You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository! You can get it using command line `aws ecr describe-repositories | jq '.repositories[].repositoryUri' | sed s/\"//g | grep like`
 <pre>
 $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hintspec_dev.yml buildspec_dev.yml
 </pre>
@@ -149,6 +154,7 @@ $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hi
 </details>
 
 When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation.
+
 
 <details>
   <summary>
@@ -249,6 +255,7 @@ When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
     </pre>
 
 3. Get status of build
+
 
     Within the return data, you should see an 'id' section. This is the build ID. In the previous example, it was mythicalmysfits-build:8c1d38a6-39f6-41b8-8360-a34d8042640b. You can either query this build ID using the CLI or visit the CodeBuild console. To find logs about what happened, visit the 'deeplink' link that will bring you directly to CloudWatch logs console where you can view logs.
 
