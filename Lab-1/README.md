@@ -18,7 +18,7 @@ Here's what you'll be doing:
 
     First, list your repositories:
 
-    <pre>
+    ```
     $ aws codecommit list-repositories
     {
         "repositories": [
@@ -32,11 +32,11 @@ Here's what you'll be doing:
             }
         ]
     }
-    </pre>
+    ```
 
     Next, use the batch-get-repositories command to get the clone URLs for both repositories, substituting the names you got from the previous CLI command:
 
-    <pre>
+    ```
     $ aws codecommit batch-get-repositories --repository-names mythical-mysfits-devsecops-monolith-service mythical-mysfits-devsecops-like-service
     {
         "repositories": [
@@ -65,19 +65,19 @@ Here's what you'll be doing:
         ],
         "repositoriesNotFound": []
     }
-    </pre>
+    ```
 
 2. Clone repos and copy in app code
 
     Earlier in the workshop, we set up the CodeCommit credential helper, so for today, we'll use the HTTPS clone URLs instead of SSH.
 
-    <pre>
+    ```
     $ cd ~/environment/
     $ git clone <b><i>REPLACEME_LIKE_REPOSITORY_cloneUrlHttp</b></i>
     $ git clone <b><i>REPLACEME_MONOLITH_REPOSITORY_cloneUrlHttp</b></i>
     $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/like-service/* <b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolith-service/* <b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
-    </pre>
+    ```
 
 ### Build security right into git commits
 
@@ -89,43 +89,45 @@ Git-Secrets scans commits, commit messages, and --no-ff merges to prevent adding
 
     First thing's first. We have to install git-secrets and set it up. Clone the git-secrets repo:
 
-    <pre>
+    ```
     $ cd ~/environment/
     $ git clone https://github.com/awslabs/git-secrets.git
-    </pre>
+    ```
 
     Install it as per the instructions on the [git-secrets GitHub page](https://github.com/awslabs/git-secrets#installing-git-secrets):
 
-    <pre>
+    ```
     $ cd ~/environment/git-secrets/
     $ sudo make install
     $ git secrets --install
     ✓ Installed commit-msg hook to .git/hooks/commit-msg
     ✓ Installed pre-commit hook to .git/hooks/pre-commit
     ✓ Installed prepare-commit-msg hook to .git/hooks/prepare-commit-msg
-    </pre>
+    ```
 
 2. Configure git-secrets
 
     Git-secrets uses hooks within git to catch whether or not you're committing something you're not supposed to. We will install it into both the repos we cloned:
 
-    <pre>
+    ```
     $ git secrets --register-aws --global
     OK
     $ cd ~/environment/<b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
     $ git secrets --install
     $ cd ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git secrets --install
-    </pre>
+    ```
 
 3. Check in code
-    <pre>
+    ```
     $ cd <b><i>~/environment/REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git add -A
     $ git commit -m "Initial Commit of like-service repo"
-    </pre>
+    ```
 
 Did you run into any issues? You should! **If not, go back to Lab 1 and make sure git secrets is working.**
+
+Basically, `git-secrets` scans commits, commit messages, and `--no-ff` merges to prevent adding secrets into your git repositories. If a commit, commit message, or any commit in a `--no-ff merge` history matches one of your configured prohibited regular expression patterns, then the commit is rejected.
 
 ### Remediation
 
@@ -133,7 +135,7 @@ Did you run into any issues? You should! **If not, go back to Lab 1 and make sur
 
     Looks like someone put in some secrets to our application. We should never have any sort of secrets directly built into the application. We have to fix this. This is the output you should have seen:
 
-    <pre>
+    ```
     service/mysfits_like.py:19:    # Boy I hope someone finds me: AKIAIOSFODNN7EXAMPLS
 
     [ERROR] Matched one or more prohibited patterns
@@ -145,7 +147,7 @@ Did you run into any issues? You should! **If not, go back to Lab 1 and make sur
     - List your configured allowed patterns: git config --get-all secrets.allowed
     - List your configured allowed patterns in .gitallowed at repository's root directory
     - Use --no-verify if this is a one-time false positive
-    </pre>
+    ```
 
     If you see the above output, git-secrets is working. If not, go back to the [Build security right into git commits](#build-security-right-into-git-commits) section.
 
@@ -154,22 +156,22 @@ Did you run into any issues? You should! **If not, go back to Lab 1 and make sur
 2. Check in the code again
 
     Now that we've fixed the issue, let's try again.
-    <pre>
+    ```
     $ git add -A
     $ git commit -m "Initial Commit of like-service repo"
     $ git push origin master
-    </pre>
+    ```
 
 3. Check the rest of the repos for AWS Credentials
 
     Now let's make sure the rest of the repos don't have any access and secret keys checked in.
 
-    <pre>
+    ```
     $ cd ~/environment/<b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
     $ git secrets --scan
     $ cd ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git secrets --scan
-    </pre>
+    ```
 
     If there were no errors, looks like we're ok.
 
