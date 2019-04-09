@@ -35,7 +35,7 @@ Here's what you'll be doing:
     - Runtime: Select **Standard**
     - Runtime version: Select **aws/codebuild/standard:1.0** - *This will default to the latest*
     - Image version: **aws/codebuild/standard:1.0-1.8.0**
-    - Privileged: **Checked** - *In order for to run Docker inside a Docker container, you need to have elevated privileges*
+    - Privileged: **Checked** - *In order to run Docker inside a Docker container, you need to have elevated privileges*
     - Service role: **Existing service role** - *A service role was automatically created for you via CFN*
     - Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously*
     - Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
@@ -76,19 +76,19 @@ Here's what you'll be doing:
 
   AWS CodeBuild uses a definition file called a buildspec Yaml file. The contents of the buildspec will determine what AWS actions CodeBuild should perform. The key parts of the buildspec are Environment Variables, Phases, and Artifacts. See [Build Specification Reference for AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) for more details.
 
-  **At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
+    **At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
 
-    1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
+      1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
 
-    2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
+      2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
 
-    Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
+      Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
 
-    <pre>
-    $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
-    $ git checkout -b dev
-    $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
-    </pre>
+      <pre>
+      $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
+      $ git checkout -b dev
+      $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
+      </pre>
 
 Now that you have a copy of the draft as your buildspec, you can start editing it. The previous developer left comments indicating what commands you need to add (<b>These comments look like - #[TODO]:</b>). Add the remaining instructions to your buildspec_dev.yml.  
 
@@ -278,7 +278,7 @@ When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
 
 # Checkpoint
 
-At this point, you have begun the CI/CD process by offloading your builds to make sure the actual production-esque build environment can handle whatever you're going to throw it it. That way, if something goes wrong, you're not trying to push to production or any other environment. You can catch those errors earlier. You've also started building in best practices by not using the :latest tag in Docker. It's very common for beginners to use the :latest tag, but the challenge is that when you do that you don't know exactly what you're deploying without comparing the SHA hash of your image with whatever you have locally. 
+At this point, you have begun the CI/CD process by offloading your builds to make sure the actual production-esque build environment can handle whatever you're going to throw it it. That way, if something goes wrong, you're not trying to push to production or any other environment. You can catch those errors earlier. You've also started building in best practices by not using the :latest tag in Docker. It's very common for beginners to use the :latest tag, but the challenge is that when you do that you don't know exactly what you're deploying without comparing the SHA hash of your image with whatever you have locally.
 
 You're now ready to build in end to end deployments!
 
