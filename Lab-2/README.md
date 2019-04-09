@@ -84,11 +84,11 @@ Here's what you'll be doing:
 
   Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
 
-      <pre>
-      $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
-      $ git checkout -b dev
-      $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
-      </pre>
+  <pre>
+  $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
+  $ git checkout -b dev
+  $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
+  </pre>
 
 Now that you have a copy of the draft as your buildspec, you can start editing it. The previous developer left comments indicating what commands you need to add (<b>These comments look like - #[TODO]:</b>). Add the remaining instructions to your buildspec_dev.yml.  
 
