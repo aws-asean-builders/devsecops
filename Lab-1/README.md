@@ -34,7 +34,7 @@ $ aws codecommit list-repositories
 }
 </pre>
 
-Next, use the batch-get-repositories command to get the clone URLs for both repositories, substituting the names you got from the previous CLI command:
+Next, use the `batch-get-repositories` command to get the clone URLs for both repositories, substituting the names you got from the previous CLI command:
 
 <pre>
 $ aws codecommit batch-get-repositories --repository-names mythical-mysfits-devsecops-monolith-service mythical-mysfits-devsecops-like-service
@@ -83,7 +83,7 @@ $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolit
 
 Now that we have our repos cloned and are ready to start checking in, let's stop to think about security. Exposed access and secret keys are often very costly for companies and that's what we're going to try and avoid. To achieve this, we're going to use a project called [git-secrets](https://github.com/awslabs/git-secrets).
 
-Git-Secrets scans commits, commit messages, and --no-ff merges to prevent adding secrets into your git repositories. If a commit, commit message, or any commit in a --no-ff merge history matches one of your configured prohibited regular expression patterns, then the commit is rejected.
+Git-Secrets scans commits, commit messages, and "--no-ff merges" to prevent adding secrets into your git repositories. If a commit, commit message, or any commit in a "--no-ff merge" history matches one of your configured prohibited regular expression patterns, then the commit is rejected.
 
 1\. Install git-secrets
 
@@ -122,6 +122,11 @@ $ git secrets --install
 <pre>
 $ cd <b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
 $ git add -A
+$ git status 
+</pre>
+
+Let's commit the code.
+<pre>
 $ git commit -m "Initial Commit of like-service repo"
 </pre>
 
@@ -149,7 +154,7 @@ Possible mitigations:
 
 If you see the above output, git-secrets is working. If not, go back to the [Build security right into git commits](#build-security-right-into-git-commits) section.
 
-Open up the file and remove the line. This time, someone just left a commented access key in there so it's not being used, but it could have been bad.
+Open up the file `mysfits_like.py` and remove the line. This time, someone just left a commented access key in there so it's not being used, but it could have been bad.
 
 2\. Check in the code again
 
@@ -157,6 +162,7 @@ Now that we've fixed the issue, let's try again.
 <pre>
 $ git add -A
 $ git commit -m "Initial Commit of like-service repo"
+$ git status
 $ git push origin master
 </pre>
 
