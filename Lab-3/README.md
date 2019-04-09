@@ -12,11 +12,11 @@ Here's what you'll be doing:
 
 ### Create new buildspec and merge feature branch
 
-1\. Create the buildspec_prod.yml file
+1\. Create the `buildspec_prod.yml` file
 
-In Lab 2, we created a buildspec for dev named buildspec_dev. That was used when CodeBuild was run directly on source code in CodeCommit, but now for production we want to build a full pipeline that will automatically deploy our environment, so we'll use CodePipeline to orchestrate that. 
+In Lab 2, we created a buildspec for dev named `buildspec_dev.yml`. That was used when CodeBuild was run directly on source code in CodeCommit, but now for production we want to build a full pipeline that will automatically deploy our environment, so we'll use CodePipeline to orchestrate that. 
 
-Ideally, we want to keep production and development branches as similar as possible, but want to control differences between dev and prod build stages. To start, we can basically copy over what we created for Lab 2, but there will be a few minor changes. We will name the new buildspec buildspec_prod.yml instead of buildspec_dev.yml.
+Ideally, we want to keep production and development branches as similar as possible, but want to control differences between dev and prod build stages. To start, we can basically copy over what we created for Lab 2, but there will be a few minor changes. We will name the new buildspec `buildspec_prod.yml` instead of `buildspec_dev.yml`.
 
 Make sure you're in the like repository folder, which should be named something like **CFNStackName-like-service**. 
 
@@ -25,7 +25,7 @@ $ cd ~/environment/<b>REPLACE_ME_LIKE_REPOSITORY_NAME</b>
 $ cp buildspec_dev.yml buildspec_prod.yml
 </pre>
 
-Next, in order for CodePipeline to deploy to Fargate, we need to have an `imagedefinitions.json` file that includes the name of the container we want to replace as well as the imageUri. Then we have to surface the file to CodePipeline in an Artifacts section. The end of your buildspec_prod.yml file will look like this:
+Next, in order for CodePipeline to deploy to Fargate, we need to have an `imagedefinitions.json` file that includes the name of the container we want to replace as well as the imageUri. Then we have to surface the file to CodePipeline in an Artifacts section. The end of your `buildspec_prod.yml` file will look like this:
 
 <pre>
 ...
@@ -51,7 +51,7 @@ Replace the container name with the name of your service, which should be `like-
 
 2\. Check in and push to dev
 
-Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_dev.yml.
+Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at `buildspec_dev.yml`.
 
 <pre>
   $ git add buildspec_prod.yml
