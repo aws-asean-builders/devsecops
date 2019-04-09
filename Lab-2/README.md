@@ -76,7 +76,7 @@ Here's what you'll be doing:
 
   AWS CodeBuild uses a definition file called a buildspec Yaml file. The contents of the buildspec will determine what AWS actions CodeBuild should perform. The key parts of the buildspec are Environment Variables, Phases, and Artifacts. See [Build Specification Reference for AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) for more details.
 
-    **At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
+  **At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
 
       1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
 
