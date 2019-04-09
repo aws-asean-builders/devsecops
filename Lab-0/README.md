@@ -35,10 +35,6 @@ Region | Launch Template
 
 The links above will bring you to the AWS CloudFormation console with the **Specify an Amazon S3 template URL** field populated and radio button selected. Just click **Next**. If you do not have this populated, please click the link above.
 
-> If this is the first time you're using CloudFormation, do click on the banner at the top to try out the new Cloudformation template to see the screens below. ![New screen](images/new-screen.png)
-
-![CloudFormation Starting Stack](images/cfn-createstack-1.png)
-
 3. Specify stack details
 
     On the Create Stack page, the stack name should automatically be populated. If you're running multiple workshop environments in the same account, use a different stack name.
