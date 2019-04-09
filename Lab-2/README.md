@@ -78,11 +78,11 @@ Here's what you'll be doing:
 
   **At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
 
-      1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
+  1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
 
-      2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
+  2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
 
-      Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
+  Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
 
       <pre>
       $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
