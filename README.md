@@ -24,7 +24,7 @@ The tools that we use in this workshop are part of the AWS Dev Tools stack, but 
 ### Requirements:
 * AWS account - if you don't have one, it's easy and free to [create one](https://aws.amazon.com/)
 * AWS IAM account with elevated privileges allowing you to interact with CloudFormation, IAM, EC2, ECS, ECR, ALB, VPC, SNS, CloudWatch, AWS CodeCommit, AWS CodeBuild, AWS CodePipeline
-* Familiarity with Python, vim/emacs/nano, [Docker](https://www.docker.com/), AWS and microservices - not required but a bonus
+* Familiarity with Python, vim/emacs/nano, [Docker](https://www.docker.com/), [basic GIT commands](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-basic-git.html), AWS and microservices - not required but a bonus
 
 ### What you'll do:
 
