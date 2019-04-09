@@ -39,7 +39,7 @@ artifacts:
   files: imagedefinitions.json
 </pre>
 
-Replace the container name with the name of your service, which should be `like-service`.
+Replace the container name (`REPLACEME_CONTAINERNAME`) with the name of your service, which should be `like-service`.
 
 <details>
 <summary> HINT: There's also completed file in hints/hintspec_prod.yml. Click here to see how to copy it in.</summary>
@@ -109,7 +109,7 @@ Click **Next**.
 **Add build stage:**
 
 - Build provider: **AWS CodeBuild**
-- Project name: Click **Create a new build project**
+- Project name: Click **Create project** button
 
 A new window should appear. The values here are almost identical to that of Lab-2 when you created your dev CodeBuild project, with the exception that the name is now prod-like-service-build and the buildspec will be buildspec_prod.yml. See Lab-2 instructions for detailed screenshots.
 
@@ -139,11 +139,12 @@ Expand the **Additional Information** and enter the following in Environment Var
 
 Once confirmed, click **Continue to CodePipeline**. This should close out the popup and tell you that it **successfully created prod-like-service-build in CodeBuild.** 
 
+Now in the **Add Build Stage" page, you will see Project Name has been set to the just created Build Project in the CodeBuild.
+
 - Project Name: **prod-like-service-build**
 
-Click **Next**.
-
 ![CodePipeline Created Build Project](images/cp-create-cb-complete.png)
+
 
 **Add deploy stage:**
 
