@@ -26,7 +26,7 @@ On the **Create build project** page, enter in the following details:
 
 - Project Name: Enter `dev-like-service-build`
 - Source Provider: Select **AWS CodeCommit**
-- Repository: Choose the repo from the CloudFormation stack that looks like StackName-**like-service**
+- Repository: Choose the repo from the CloudFormation stack that looks like CFNStackName-**like-service**
 
 **Environment:**
 
@@ -45,20 +45,28 @@ On the **Create build project** page, enter in the following details:
 Expand the **Additional Information** and enter the following in Environment Variables:
 
 - Name: `AWS_ACCOUNT_ID` - *Enter this string*
-- Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID* Run this command to get your 12-digit Account ID ``aws sts get-caller-identity``
+- Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID*. Run this command in your Cloud9 terminal to get your 12-digit Account ID ``aws sts get-caller-identity``
 
 **Buildspec:**
 
-- Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
-- Buildspec name: Enter `buildspec_dev.yml` - *we'll be using the same repo, but different buildspecs*
+- Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file in our code repository*
+- Buildspec name: Enter `buildspec_dev.yml` - *The name of buildspec file that will be created later*
 
 **Artifacts:**
 
 - Type: Select **No artifacts** *If there are any build outputs that need to be stored, you can choose to put them in S3.*
 
+**Logs:**
+
+- Leave it as default
+
 Click **Create build project**.
 
 ![CodeBuild Create Project Part 2](images/cb-create-project-2.png)
+
+Now you have "Build project" in the CodeBuild.
+
+![CodeBuild Create Project Done](images/cb-create-project-done.png)
 
 2\. Get login, tag, and push commands for ECR
 
@@ -82,7 +90,7 @@ AWS CodeBuild uses a definition file called a buildspec Yaml file. The contents 
 
 2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
 
-Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
+Another developer from the Mythical Mysfits team has started a buildspec file in the `dev` branch for you, but never got to finishing it. Add the remaining instructions to the `buildspec_dev.yml.draft` file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a `buildspec_dev.yml` file.
 
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
@@ -115,10 +123,10 @@ Here are links to documentation and hints to help along the way. If you get stuc
 
 <details>
   <summary>
-    HINT: Click here for the completed buildspec.yml file.
+    HINT: Click here for the completed `buildspec.yml` file.
   </summary>
   There are many ways to achieve what we're looking for. In this case, the buildspec looks like this:
-<pre>
+```
 version: 0.2
 
 phases:
@@ -138,17 +146,16 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION # <b><i>This is the push command from earlier</i></b>
-</pre>
-<br/>
+```
 
-You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
+You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository! You can get it using command line `aws ecr describe-repositories | jq '.repositories[].repositoryUri' | sed s/\"//g | grep like`
 <pre>
 $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hintspec_dev.yml buildspec_dev.yml
 </pre>
 
 </details>
 
-When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation. 
+When we created the `buildspec_dev.yml` file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation. 
 
 <details>
   <summary>
@@ -247,6 +254,10 @@ $ aws codebuild start-build --project-name dev-like-service-build --source-versi
     }
 }
 </pre>
+
+You can also start the Build Project from the CodeBuild console by clicking "Start Build":
+
+![Start the Build Project](images/cb-project-start.pn)
 
 3\. Get status of build
 
