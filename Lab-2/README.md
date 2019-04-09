@@ -257,7 +257,7 @@ $ aws codebuild start-build --project-name dev-like-service-build --source-versi
 
 You can also start the Build Project from the CodeBuild console by clicking "Start Build":
 
-![Start the Build Project](images/cb-project-start.pn)
+![Start the Build Project](images/cb-project-start.png)
 
 3\. Get status of build
 
