@@ -81,9 +81,13 @@ The CloudFormation template will launch the following:
 
 ## Checkpoint:
 
-The CloudFormation stack will take a few minutes to launch.  Periodically check on the stack creation process in the CloudFormation Dashboard.  Your stack should show status **CREATE\_COMPLETE** in roughly 5-10 minutes. If you select box next to your stack and click on the **Events** tab, you can see what steps it's on.  
+The CloudFormation stack will take a few minutes to launch.  Periodically check on the stack creation process in the CloudFormation Dashboard. If you select box next to your stack and click on the **Events** tab, you can see what steps it's on. Wait roughly 5-10 minutes until you see "mythical-mysfits-devsecops" in the "Logical ID" row with status **CREATE\_COMPLETE**. 
 
 ![CloudFormation CREATE_COMPLETE](images/cfn-create-complete.png)
+
+or until you see the overall Stack status in the **Stack Info** tab is **CREATE\_COMPLETE**
+
+![CloudFormation CREATE_COMPLETE](images/cfn-create-complete-2.png)
 
 If there was an [error](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors) during the stack creation process, CloudFormation will rollback and terminate. You can investigate and troubleshoot by looking in the Events tab.  Any errors encountered during stack creation will appear in the event stream as a failure.
 
