@@ -126,7 +126,7 @@ Here are links to documentation and hints to help along the way. If you get stuc
     HINT: Click here for the completed `buildspec.yml` file.
   </summary>
   There are many ways to achieve what we're looking for. In this case, the buildspec looks like this:
-```
+<pre>
 version: 0.2
 
 phases:
@@ -146,7 +146,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION # <b><i>This is the push command from earlier</i></b>
-```
+</pre>
 
 You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository! You can get it using command line `aws ecr describe-repositories | jq '.repositories[].repositoryUri' | sed s/\"//g | grep like`
 <pre>
