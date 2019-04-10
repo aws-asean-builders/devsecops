@@ -5,6 +5,7 @@
 - Lab0 https://asciinema.org/a/ZfiNXylAJkNm4PhFb8PO9WO1P
 - Lab 1 https://asciinema.org/a/T417bRBumxkxMV2nT2Yt1WRTO
 - Lab 2 https://asciinema.org/a/4JYRT4kxm8RgBKR9zVEFinJ4t
+- Lab 3 https://asciinema.org/a/KqbKs0uYkqnPqsG01DueIVdIL
 
 ## Overview
 ![mysfits-welcome](/images/mysfits-welcome.png)
