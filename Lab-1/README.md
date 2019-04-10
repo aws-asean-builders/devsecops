@@ -72,13 +72,13 @@ Here's what you'll be doing:
 
     Earlier in the workshop, we set up the CodeCommit credential helper, so for today, we'll use the HTTPS clone URLs instead of SSH.
 
-    ```
+    <pre>
     $ cd ~/environment/
     $ git clone <b><i>REPLACEME_LIKE_REPOSITORY_cloneUrlHttp</b></i>
     $ git clone <b><i>REPLACEME_MONOLITH_REPOSITORY_cloneUrlHttp</b></i>
     $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/like-service/* <b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolith-service/* <b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
-    ```
+    </pre>
 
 ### Build security right into git commits
 
@@ -110,22 +110,22 @@ Git-Secrets scans commits, commit messages, and "--no-ff merges" to prevent addi
 
     Git-secrets uses hooks within git to catch whether or not you're committing something you're not supposed to. We will install it into both the repos we cloned:
 
-    ```
+    <pre>
     $ git secrets --register-aws --global
     OK
     $ cd ~/environment/<b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
     $ git secrets --install
     $ cd ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git secrets --install
-    ```
+    </pre>
 
 
 3. Check in code
-    ```
+    <pre>
     $ cd <b><i>~/environment/REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git add -A
     $ git commit -m "Initial Commit of like-service repo"
-    ```
+    </pre>
 
 Did you run into any issues? You should! **If not, go back to Lab 1 and make sure git secrets is working.**
 
@@ -169,12 +169,12 @@ Basically, `git-secrets` scans commits, commit messages, and `--no-ff` merges to
 
     Now let's make sure the rest of the repos don't have any access and secret keys checked in.
 
-    ```
+    <pre>
     $ cd ~/environment/<b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
     $ git secrets --scan
     $ cd ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
     $ git secrets --scan
-    ```
+    </pre>
 
     If there were no errors, looks like we're ok.
 

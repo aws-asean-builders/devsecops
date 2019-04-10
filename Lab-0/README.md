@@ -109,13 +109,13 @@ If there was an [error](http://docs.aws.amazon.com/AWSCloudFormation/latest/User
 
     Since most of the labs are going to be using git, let's set up our permissions now. There are a number of ways to authenticate with git repositories, and specifically CodeCommit in this case, but for the sake of simplicity, we'll use the CodeCommit credential helper here. Enter the following commands to configure git to access CodeCommit.
 
-    ```
+    <pre>
     $ git config --global credential.helper "cache --timeout=7200"
     $ git config --global user.email "<b><i>REPLACEWITHYOUREMAIL</i></b>"
     $ git config --global user.name "<b><i>REPLACEWITHYOURNAME</i></b>"
     $ git config --global credential.helper '!aws codecommit credential-helper $@'
     $ git config --global credential.UseHttpPath true
-    ```
+    </pre>
 
 2. Clone Workshop Repo
 
