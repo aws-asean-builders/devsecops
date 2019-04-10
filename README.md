@@ -2,8 +2,8 @@
 
 ## Recording:
 
-- Lab0 https://asciinema.org/a/ZfiNXylAJkNm4PhFb8PO9WO1P)
-
+- Lab0 https://asciinema.org/a/ZfiNXylAJkNm4PhFb8PO9WO1P
+- Lab 1 https://asciinema.org/a/T417bRBumxkxMV2nT2Yt1WRTO
 
 ## Overview
 ![mysfits-welcome](/images/mysfits-welcome.png)
