@@ -139,12 +139,13 @@ Expand the **Additional Information** and enter the following in Environment Var
 
 Once confirmed, click **Continue to CodePipeline**. This should close out the popup and tell you that it **successfully created prod-like-service-build in CodeBuild.** 
 
-Now in the **Add Build Stage" page, you will see Project Name has been set to the just created Build Project in the CodeBuild.
+Now in the **Add build stage** page, you will see the "Project Name" has been set to the Build Project you've created in the CodeBuild.
 
 - Project Name: **prod-like-service-build**
 
 ![CodePipeline Created Build Project](images/cp-create-cb-complete.png)
 
+Click **Next**.
 
 **Add deploy stage:**
 
