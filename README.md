@@ -1,5 +1,10 @@
 # Mythical Mysfits: DevSecOps with Docker and AWS Fargate
 
+## Recording:
+
+- Lab0 https://asciinema.org/a/ZfiNXylAJkNm4PhFb8PO9WO1P)
+
+
 ## Overview
 ![mysfits-welcome](/images/mysfits-welcome.png)
 
